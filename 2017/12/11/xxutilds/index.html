@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="王宇的博客">
 <meta property="og:description" content="1关于敏感逻辑的保护方案扩写">
 <meta property="og:locale" content="zh_cn">
-<meta property="og:updated_time" content="2018-02-25T07:18:43.840Z">
+<meta property="og:updated_time" content="2018-02-25T07:47:32.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于敏感逻辑的保护方案扩写">
 <meta name="twitter:description" content="1关于敏感逻辑的保护方案扩写">
@@ -186,11 +186,30 @@
 <p>  但是,虽然提高了逆向成本，别人真要要搞你的app，还是有办法，所以，，敏感逻辑能放后台的就放后台吧。</p>
 <p>  原文中，给我们展示了一些简单的例子，下面的是 带block 参数的写法：  </p>
 <blockquote>
-<p>1.先定义两个block<br>  <code>typedef void(^SuccessHandler)(id responseObject);</code><br>  <code>typedef void(^FailureHandler)(NSError * error);</code></p>
-<p>2.在我们的net请求类里 .h文件 -&gt;<br>  <code>typedef struct _util {</code><br>    <code>void (*orderGetBy)(NSDictionary *aapDealsBean,NSArray ``*aapDealOrdersList,SuccessHandler success,FailureHandler failure);</code><br><code>}XXUtil_t;</code>  </p>
-<p><code>#define XXUtil ([NetworkingManager sharedUtil])</code><br><code>@interface NetworkingManager (Utilp)</code><br><code>+ (XXUtil_t *)sharedUtil;</code><br><code>@end</code><br>3.在.m文件里<br><code>static void _orderGetBy(NSDictionary *aapDealsBean,NSArray ``*aapDealOrdersList,SuccessHandler success,FailureHandler failure)</code><br><code>{</code><br>    <code>[NetworkingManager postWithURL:url params:dict successHandler:success failureHandler:failure];</code><br><code>}</code><br><code>static XXUtil_t * util = NULL;</code><br><code>@implementation NetworkingManager (Utilp)</code><br><code>+(XXUtil_t *)sharedUtil</code><br><code>{</code><br>   <code>static dispatch_once_t onceToken;</code><br>    <code>dispatch_once(&amp;onceToken, ^{</code><br>        <code>util = malloc(sizeof(XXUtil_t));</code><br>        <code>util-&gt;orderGetBy = _orderGetBy;</code><br>    <code>`});</code><br>    <code>return util;</code><br><code>}</code><br><code>+ (void)destroy</code><br><code>{</code><br>    <code>util ? free(util): 0;</code><br>    <code>util = NULL;</code><br><code>}</code></p>
-<p><code>@end</code>.<br>4.在其他文件中使用：<br><code>@weakify(self)</code><br>    <code>XXUtil-&gt;orderGetBy(head,body,self.success =^(id responseObject){</code><br>            <code>//do some success</code><br>    <code>},self.failure = ^(NSError *error){</code><br>         <code>@strongify(self)</code><br>         <code>//do some failure</code><br>    <code>});</code></p>
+<p>1.先定义两个block </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;typedef void(^SuccessHandler)(id responseObject);</span><br><span class="line">&gt;</span><br><span class="line">&gt;typedef void(^FailureHandler)(NSError * error);</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<p>  &gt;</p>
+<blockquote>
+<p>2.在我们的net请求类里 .h文件 -&gt;  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; typedef struct _util &#123;</span><br><span class="line">&gt;   void (*orderGetBy)(NSDictionary *aapDealsBean,NSArray *aapDealOrdersList,SuccessHandler success,FailureHandler failure);</span><br><span class="line">&gt;&#125;XXUtil_t; </span><br><span class="line">&gt;</span><br><span class="line">&gt;#define XXUtil ([NetworkingManager sharedUtil])</span><br><span class="line">&gt;@interface NetworkingManager (Utilp)</span><br><span class="line">&gt;- (XXUtil_t *)sharedUtil;  </span><br><span class="line">&gt;@end </span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>  &gt;<br>  &gt;</p>
+<blockquote>
+<ul>
+<li>3.在.m文件里  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&gt;  /**</span><br><span class="line">&gt;   1xxp</span><br><span class="line">&gt;</span><br><span class="line">&gt;   @param aapDealsBean head</span><br><span class="line">&gt;   @param aapDealOrdersList body</span><br><span class="line">&gt;   @param success block</span><br><span class="line">&gt;   @param failure block</span><br><span class="line">&gt;   */</span><br><span class="line">&gt;  static void _orderGetBy(NSDictionary *aapDealsBean,NSArray *aapDealOrdersList,SuccessHandler success,FailureHandler failure)</span><br><span class="line">&gt;  &#123;</span><br><span class="line">&gt;      NSString *url;</span><br><span class="line">&gt;      </span><br><span class="line">&gt;      NSMutableDictionary *dict = @&#123;&#125;.mutableCopy;</span><br><span class="line">&gt;      </span><br><span class="line">&gt;      [dict setValue:aapDealsBean forKey:@&quot;aapDealsBean&quot;];</span><br><span class="line">&gt;      </span><br><span class="line">&gt;      [dict setValue:aapDealOrdersList forKey:@&quot;aapDealOrdersList&quot;];</span><br><span class="line">&gt;      </span><br><span class="line">&gt;      [NetworkingManager postWithURL:url</span><br><span class="line">&gt;                              params:dict</span><br><span class="line">&gt;         successHandler:success</span><br><span class="line">&gt;         failureHandler:failure];</span><br><span class="line">&gt;  &#125;</span><br><span class="line">&gt;  @end</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p> ​</p>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>4.在其他文件中使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;@weakify(self)</span><br><span class="line">&gt;</span><br><span class="line">&gt;   XXUtil-&gt;orderGetBy(head,body,self.success =^(id responseObject)&#123;  </span><br><span class="line">&gt;</span><br><span class="line">&gt;   		//do some success  </span><br><span class="line">&gt;</span><br><span class="line">&gt;   &#125;,self.failure = ^(NSError *error)&#123;  </span><br><span class="line">&gt;</span><br><span class="line">&gt;        `@strongify(self)`    </span><br><span class="line">&gt;        `//do some failure`   </span><br><span class="line">&gt;</span><br><span class="line">&gt;   &#125;);</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>&gt;<br>&gt;</p>
 
       
 
