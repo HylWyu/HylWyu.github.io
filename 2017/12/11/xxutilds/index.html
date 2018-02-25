@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>王宇的博客</title>
+  <title>关于敏感逻辑的保护方案扩写 | 王宇的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="iOS开发,深入研究iOS技术">
-<meta name="keywords" content="html,ios,java,weex开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王宇的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="关于敏感逻辑的保护方案扩写">
+<meta name="keywords" content="OC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于敏感逻辑的保护方案扩写">
+<meta property="og:url" content="http://yoursite.com/2017/12/11/xxutilds/index.html">
 <meta property="og:site_name" content="王宇的博客">
-<meta property="og:description" content="iOS开发,深入研究iOS技术">
+<meta property="og:description" content="关于敏感逻辑的保护方案扩写">
 <meta property="og:locale" content="zh_cn">
+<meta property="og:updated_time" content="2018-02-25T07:05:34.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王宇的博客">
-<meta name="twitter:description" content="iOS开发,深入研究iOS技术">
+<meta name="twitter:title" content="关于敏感逻辑的保护方案扩写">
+<meta name="twitter:description" content="关于敏感逻辑的保护方案扩写">
   
     <link rel="alternative" href="/atom.xml" title="王宇的博客" type="application/atom+xml">
   
@@ -158,188 +159,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-xiaoxiao_cash" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-xxutilds" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/xiaoxiao_cash/">xiaoxiao_cash_md</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/11/xiaoxiao_cash/" class="archive-article-date">
-  	<time datetime="2018-02-11T02:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#<center style="font-size:20px">收银前端接口文档</center></p>
-<hr>
-<p>####<a style="color:#e06064">统一注册model名称：</a>  </p>
-<blockquote>
-<p>1.登录超时<code>login_timeout=@&quot;true&quot;</code>时的下发事件event命名：➡️<a style="color:#e06064">“geolocations”</a><br>  <code>[self.instance fireGlobalEvent:@&quot;geolocations&quot; params:@{@&quot;time_out&quot;:@&quot;false&quot;}];</code></p>
-</blockquote>
-<ul>
-<li>######## 在线传 true !!!! 不要反了!!!! ######.   </li>
-</ul>
-<p>###.其他接口或者提供本地存储数据的model:    </p>
-<ul>
-<li>1.<a style="color:#e06064">🐱调起相机扫码返回扫码到的 二维码 或者 条码: ➡️”camera”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;camera&quot; withClass:[WXCameraModule class]];</code> </li>
-<li>2.<a style="color:#e06064">🐱登录、退出登录、修改密码、判断是否登录状态、获取登录存储在本地的user信息:➡️”xxlogin”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxlogin&quot; withClass:[LoginModule class]];</code> </li>
-<li>3.<a style="color:#e06064">🐱获取商品列表、获取商品分类列表、获取图片下载的baseURL:➡️”xxshop”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxshop&quot; withClass:[ShopModule class]];</code> </li>
-<li>4.<a style="color:#e06064">🐱蓝牙model、接口较多、写在下面:➡️”xxblue”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxblue&quot; withClass:[BlueToothModule class]];</code></li>
-<li>5.<a style="color:#e06064">🐱新建订单、支付宝支付、微信支付、现金支付:➡️”xxorder”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxorder&quot; withClass:[OrderModule class]];</code>  </li>
-</ul>
-<p> 网络请求失败,统一返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code><br></p>
-        
-          <a class="article-more-a" href="/2018/02/11/xiaoxiao_cash/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">接口文档</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/11/xiaoxiao_cash/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-shooting-star" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/11/shooting-star/">shooting star</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/11/shooting-star/" class="archive-article-date">
-  	<time datetime="2018-01-11T02:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello world!</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/11/shooting-star/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-xxutilds" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/11/xxutilds/">关于敏感逻辑的保护方案扩写</a>
+    <h1 class="article-title" itemprop="name">
+      关于敏感逻辑的保护方案扩写
     </h1>
   
 
@@ -353,11 +180,52 @@
     <div class="article-entry" itemprop="articleBody">
       
         <center style="font-size:30px;color:#e06064">关于敏感逻辑的保护方案扩写</center>
-        
-          <a class="article-more-a" href="/2017/12/11/xxutilds/#more">more >></a>
-        
+
+<a id="more"></a>
+<hr>
+<p>  原文是 念茜大神 的博客，但是运用到我们实际项目中，会涉及block，作一番修改后，以便自己使用。<br>  原文🔗：<a href="http://blog.csdn.net/yiyaaixuexi/article/details/29210413" target="_blank" rel="noopener">——&gt;&gt;&gt;</a>. </p>
+<p>  但是,虽然提高了逆向成本，别人真要要搞你的app，还是有办法，所以，，敏感逻辑能放后台的就放后台吧。</p>
+<p>  原文中，给我们展示了一些简单的例子，下面的是 带block 参数的写法：  </p>
+<blockquote>
+<p>1.先定义两个block<br>  <code>typedef void(^SuccessHandler)(id responseObject);</code><br>  <code>typedef void(^FailureHandler)(NSError * error);</code></p>
+<p>2.在我们的net请求类里 .h文件 -&gt;<br>  <code>typedef struct _util {</code><br>    <code>void (*orderGetBy)(NSDictionary *aapDealsBean,NSArray ``*aapDealOrdersList,SuccessHandler success,FailureHandler failure);</code><br><code>}XXUtil_t;</code>  </p>
+<p><code>#define XXUtil ([NetworkingManager sharedUtil])</code><br><code>@interface NetworkingManager (Utilp)</code><br><code>+ (XXUtil_t *)sharedUtil;</code><br><code>@end</code><br>3.在.m文件里<br><code>static void _orderGetBy(NSDictionary *aapDealsBean,NSArray ``*aapDealOrdersList,SuccessHandler success,FailureHandler failure)</code><br><code>{</code><br>    <code>[NetworkingManager postWithURL:url params:dict successHandler:success failureHandler:failure];</code><br><code>}</code><br><code>static XXUtil_t * util = NULL;</code><br><code>@implementation NetworkingManager (Utilp)</code><br><code>+(XXUtil_t *)sharedUtil</code><br><code>{</code><br>   <code>static dispatch_once_t onceToken;</code><br>    <code>dispatch_once(&amp;onceToken, ^{</code><br>        <code>util = malloc(sizeof(XXUtil_t));</code><br>        <code>util-&gt;orderGetBy = _orderGetBy;</code><br>    <code>`});</code><br>    <code>return util;</code><br><code>}</code><br><code>+ (void)destroy</code><br><code>{</code><br>    <code>util ? free(util): 0;</code><br>    <code>util = NULL;</code><br><code>}</code></p>
+<p><code>@end</code>.<br>4.在其他文件中使用：<br><code>@weakify(self)</code><br>    <code>XXUtil-&gt;orderGetBy(head,body,self.success =^(id responseObject){</code><br>            <code>//do some success</code><br>    <code>},self.failure = ^(NSError *error){</code><br>         <code>@strongify(self)</code><br>         <code>//do some failure</code><br>    <code>});</code></p>
+</blockquote>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您的支持<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -377,16 +245,79 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/11/xxutilds/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/11/xxutilds/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/01/11/shooting-star/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          shooting star
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -407,7 +338,19 @@
 
 
 
+  <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2155016"></script>
+<!-- UY END -->
   
+  
+  
+  
+
+  
+
+  
+
   
 
 
@@ -430,8 +373,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
