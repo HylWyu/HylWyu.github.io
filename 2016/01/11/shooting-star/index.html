@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>xiaoxiao_cash_md | 王宇的博客</title>
+  <title>shooting star | 王宇的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1收银前端接口文档">
-<meta name="keywords" content="接口文档">
+  <meta name="description" content="1Hello world!">
+<meta name="keywords" content="杂项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xiaoxiao_cash_md">
-<meta property="og:url" content="http://yoursite.com/2018/02/11/xiaoxiao_cash/index.html">
+<meta property="og:title" content="shooting star">
+<meta property="og:url" content="http://yoursite.com/2016/01/11/shooting-star/index.html">
 <meta property="og:site_name" content="王宇的博客">
-<meta property="og:description" content="1收银前端接口文档">
+<meta property="og:description" content="1Hello world!">
 <meta property="og:locale" content="zh_cn">
-<meta property="og:updated_time" content="2018-02-25T07:18:51.295Z">
+<meta property="og:updated_time" content="2018-02-26T07:36:16.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xiaoxiao_cash_md">
-<meta name="twitter:description" content="1收银前端接口文档">
+<meta name="twitter:title" content="shooting star">
+<meta name="twitter:description" content="1Hello world!">
   
     <link rel="alternative" href="/atom.xml" title="王宇的博客" type="application/atom+xml">
   
@@ -159,511 +159,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-xiaoxiao_cash" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-shooting-star" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      xiaoxiao_cash_md
+      shooting star
     </h1>
   
 
         
-        <a href="/2018/02/11/xiaoxiao_cash/" class="archive-article-date">
-  	<time datetime="2018-02-11T02:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+        <a href="/2016/01/11/shooting-star/" class="archive-article-date">
+  	<time datetime="2016-01-11T02:45:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">收银前端接口文档</span><br></pre></td></tr></table></figure>
-<hr>
-<a id="more"></a>
-<p>####<a style="color:#e06064">统一注册model名称：</a>  </p>
-<blockquote>
-<p>1.登录超时<code>login_timeout=@&quot;true&quot;</code>时的下发事件event命名：➡️<a style="color:#e06064">“geolocations”</a><br>  <code>[self.instance fireGlobalEvent:@&quot;geolocations&quot; params:@{@&quot;time_out&quot;:@&quot;false&quot;}];</code></p>
-</blockquote>
-<ul>
-<li>######## 在线传 true !!!! 不要反了!!!! ######.   </li>
-</ul>
-<p>###.其他接口或者提供本地存储数据的model:    </p>
-<ul>
-<li>1.<a style="color:#e06064">🐱调起相机扫码返回扫码到的 二维码 或者 条码: ➡️”camera”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;camera&quot; withClass:[WXCameraModule class]];</code> </li>
-<li>2.<a style="color:#e06064">🐱登录、退出登录、修改密码、判断是否登录状态、获取登录存储在本地的user信息:➡️”xxlogin”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxlogin&quot; withClass:[LoginModule class]];</code> </li>
-<li>3.<a style="color:#e06064">🐱获取商品列表、获取商品分类列表、获取图片下载的baseURL:➡️”xxshop”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxshop&quot; withClass:[ShopModule class]];</code> </li>
-<li>4.<a style="color:#e06064">🐱蓝牙model、接口较多、写在下面:➡️”xxblue”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxblue&quot; withClass:[BlueToothModule class]];</code></li>
-<li>5.<a style="color:#e06064">🐱新建订单、支付宝支付、微信支付、现金支付:➡️”xxorder”</a></li>
-<li><code>[WXSDKEngine registerModule:@&quot;xxorder&quot; withClass:[OrderModule class]];</code>  </li>
-</ul>
-<p> 网络请求失败,统一返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code></p>
-<hr>
-<p>###一、登录、user相关</p>
-<hr>
-<p>1.<a href="#register">登录</a><br>2.<a href="#register1">退出登录(需要判断当前登录账号是管理员还是业务员)</a><br>3.<a href="#register2">修改密码</a><br>4.<a href="#register3">判断是否处于登录状态(暂时没有用,是通过下发事件通知的)</a><br>5.<a href="#register4">获取保存在本地的user信息</a><br>6.<a href="#register5">判断是否已经交班</a>.<br>7.<a href="#register6">获取员工、业务员列表</a>.<br>8.<a href="#register7">交班</a><br>9.<a href="#register8">拨打电话</a><br>10.<a href="#register9">跳转QQ</a> </p>
-<p>###二、相机调用</p>
-<hr>
-<p>1.<a href="#camera">调用相机,获取回调数据</a>  </p>
-<p>###三、商品</p>
-<hr>
-<p>1.<a href="#shop">获取商品列表</a><br>2.<a href="#shop1">获取商品品种分类列表</a>.<br>3.<a href="#shop2">获取图片baseURL(暂时让前端写死的)</a> </p>
-<p>###四、蓝牙</p>
-<hr>
-<p>1.<a href="#blue">检查蓝牙控件是否正常并打开</a><br>2.<a href="#blue1">蓝牙列表</a>.<br>3.<a href="#blue2">连接蓝牙</a><br>4.<a href="#blue3">自动连接蓝牙</a><br>5.<a href="#blue4">打印接口(暂时还没调，最后补充)</a>.<br>6.<a href="#blue5">停止搜索设备</a><br>7.<a href="#blue6">打印规格设置</a><br>8.<a href="#blue7">获取打印规格</a>.<br>9.<a href="#blue8">自动打印开启设置</a><br>10.<a href="#blue8">获取自动打印是否开启</a>  </p>
-<p>###五、订单</p>
-<hr>
-<p>1.<a href="#order">新建订单获取订单</a><br>2.<a href="#order1">支付宝支付</a>.<br>3.<a href="#order2">微信支付</a><br>4.<a href="#order3">现金支付</a></p>
-<p>###🐶🐶🐶🐶🐶🐶这 是 分 割 线🐶🐶🐶🐶🐶🐶</p>
-<p>##<a name="register" style="color:#e06064">登录</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">loginWithUser:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数名</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>phone</td>
-<td>登录名</td>
-<td>string</td>
-</tr>
-<tr>
-<td>code</td>
-<td>密码</td>
-<td>string</td>
-<td>. </td>
-</tr>
-</tbody>
-</table>
-<p>例子：<br><code>{&quot;phone&quot;:&quot;187777777777&quot;,&quot;code&quot;:&quot;888888888&quot;}</code></p>
-<p>  后台返给native什么，native就返给web什么。<br>  其他错误信息返回，封装方式：<br>  <code>{&quot;ret_status&quot;:&quot;error&quot;}</code> 登录只用返回这个，提示框提示信息都是native写.  </p>
-<p>##<a name="register1" style="color:#e06064">退出登录</a></p>
-<ul>
-<li>web请求参数 任意string,任意string,意思native暂时不必理会web传的值,只需要接受到就行了,最初想法是,可以做个验证,暂时不必理会.</li>
-<li>暴露给web方法名称 <a style="color:#e06064">loginOut:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>退出登录成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code><br>退出登录失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.  </p>
-<p>同登录一样，提示都是native负责.下面的接口不作阐述.  </p>
-<p>##<a name="register2" style="color:#e06064">修改密码</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">editSalescode:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>old_xx</td>
-<td>旧密码</td>
-<td>string</td>
-</tr>
-<tr>
-<td>new_xx</td>
-<td>新密码</td>
-<td>string</td>
-</tr>
-<tr>
-<td>renew_xx</td>
-<td>重复的新密码</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>native接收例子：<br><code>{&quot;old_xx&quot;:&quot;187777777777&quot;,&quot;new_xx&quot;:&quot;888888888&quot;,&quot;renew_xx&quot;:&quot;888888888&quot;}</code></p>
-<p>返回给web：<br>修改成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code><br>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.   </p>
-<p>##<a name="register4" style="color:#e06064">获取本地保存的user信息</a></p>
-<ul>
-<li>web请求参数 任意string</li>
-<li>暴露给web方法名称 <a style="color:#e06064">getUserMes:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数名</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：  (此处我将后台返给我的字典转model，然后保存在本地)<br>获取成功返回：<code>后台返给我们的</code><br>获取失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;,
-              &quot;rpc_msg&quot;:&quot;本地数据不存在!&quot;
-                   }</code>.   </p>
-<hr>
-<hr>
-<hr>
-<p>##<a name="camera" style="color:#e06064">打开native相机界面,获取相机回调数据</a></p>
-<ul>
-<li>web请求参数 没有参数</li>
-<li>暴露给web方法名称 <a style="color:#e06064">scanCode:</a></li>
-</ul>
-<p>返回给web：   (此处我将后台返给我的字典转model，然后保存在本地)<br>获取成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;,&quot;data&quot;:二维码或者条码什么的}</code><br>获取失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<hr>
-<hr>
-<hr>
-<p>##<a name="shop" style="color:#e06064">获取商品列表</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">getGoodsList:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>start必传</td>
-<td>分页</td>
-<td>string(我们自己转自己需要的类型)</td>
-</tr>
-<tr>
-<td>limit必传</td>
-<td>分页</td>
-<td>string(我们自己转自己需要的类型)</td>
-</tr>
-<tr>
-<td>search_key非必传</td>
-<td>搜索关键字体、搜索用</td>
-<td>string</td>
-</tr>
-<tr>
-<td>catid非必传</td>
-<td>分类id、点击左边分类、请求分类数据</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>native接收例子：  </p>
-<blockquote>
-<p>{“start”:”0”,<br>“limit”:”10”,<br>“search_key”:”牙膏”,<br>“catid”:”8345”<br>}</p>
-</blockquote>
-<p>返回给web：<br>修改成功返回：<code>后台返给我们的</code><br>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<p>##<a name="shop1" style="color:#e06064">获取商品分类列表</a></p>
-<ul>
-<li>web请求参数 任意</li>
-<li>暴露给web方法名称 <a style="color:#e06064">getGoodsClassifyList:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>修改成功返回：（后台返给我们数据较多,我们重新封装）. </p>
-<blockquote>
-<p>{“ret_status”:”ok”,<br>“gcatlist”:<br>[{“cat_id” : “ 32 “, descrip : “ 豆奶 “},<br>{“cat_id” : “ 33 “, descrip : “ 数码 “},<br>{“cat_id” : “ 34 “, descrip : “ 服装 “}]<br>}</p>
-</blockquote>
-<p>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<hr>
-<hr>
-<hr>
-<p>##<a name="blue" style="color:#e06064">检查蓝牙控件是否正常并打开</a></p>
-<ul>
-<li>web请求参数 任意</li>
-<li>暴露给web方法名称 <a style="color:#e06064">checkBlueTooth:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>打开返回： {@”ret_status”:@”ok”}.<br>未打开返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<p>##<a name="blue1" style="color:#e06064">蓝牙列表</a></p>
-<ul>
-<li>web请求参数 任意</li>
-<li>暴露给web方法名称 <a style="color:#e06064">getBlueToothList:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>打开返回： （需要自己封装）. </p>
-<blockquote>
-<p>{“ret_status”:”ok”,<br>“gcatlist”:<br>[{“rssid” : “ 32 “, name : “ 王宇的iphone “},<br>{“rssid” : “ 33 “, name : “ 王宇的pro “},<br>{“rssid” : “ 34 “, name : “ 王宇的ipad “}]<br>}<br>未打开返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-</blockquote>
-<p>##<a name="blue2" style="color:#e06064">连接蓝牙</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">connect:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>设备名称</td>
-<td>string</td>
-</tr>
-<tr>
-<td>rssid</td>
-<td>设备id</td>
-<td>nsnumber</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>连接成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code>  </p>
-<p>连接失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue3" style="color:#e06064">自动连接</a></p>
-<ul>
-<li>web请求参数 任意</li>
-<li>暴露给web方法名称 <a style="color:#e06064">autoConnect:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>连接成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code>  </p>
-<p>连接失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue4" style="color:#e06064">打印接口</a></p>
-<ul>
-<li>web请求参数 字典（暂无,2月9号给）</li>
-<li>暴露给web方法名称 <a style="color:#e06064">printerMes:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td>string</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>nsnumber</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>连接成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code>  </p>
-<p>连接失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue5" style="color:#e06064">停止搜索设备</a></p>
-<ul>
-<li>web请求参数 任意</li>
-<li>暴露给web方法名称 <a style="color:#e06064">stopScan:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>连接成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code><br>连接失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue6" style="color:#e06064">打印规格设置</a></p>
-<ul>
-<li>web请求参数 string（暂无,2月9号给）</li>
-<li>暴露给web方法名称 <a style="color:#e06064">printerSpeci:callback:</a></li>
-</ul>
-<p>web传一个string到native： 58 或者 80</p>
-<p>返回给web：<br>保存成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code>  </p>
-<p>保存失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue7" style="color:#e06064">获取打印规格</a></p>
-<ul>
-<li>web请求参数 string（暂无,2月9号给）</li>
-<li>暴露给web方法名称 <a style="color:#e06064">printerSetOfSpeci:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>本地有值并且成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;,
-                   &quot;my_speci&quot;:web存什么我们返回什么
-                   }</code>  </p>
-<p>本地没有值返回：<code>{&quot;ret_status&quot;:&quot;error&quot;,
-                   &quot;my_speci&quot;:&quot;no_set&quot;
-                   }</code>.</p>
-<p>##<a name="blue8" style="color:#e06064">自动打印开启</a></p>
-<ul>
-<li>web请求参数 string（暂无,2月9号给）</li>
-<li>暴露给web方法名称 <a style="color:#e06064">printerAuto:callback:</a></li>
-</ul>
-<p>web传一个string到native： 1 或者 0 </p>
-<p>返回给web：<br>保存成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;}</code>  </p>
-<p>保存失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>.</p>
-<p>##<a name="blue9" style="color:#e06064">获取自动打印是否开启</a></p>
-<ul>
-<li>web请求参数 string（暂无,2月9号给）</li>
-<li>暴露给web方法名称 <a style="color:#e06064">printerAutoStatus:callback:</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>请求参数</th>
-<th>参数</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>string</td>
-<td>任意</td>
-<td>string</td>
-</tr>
-</tbody>
-</table>
-<p>返回给web：<br>本地有值并且成功返回：<code>{&quot;ret_status&quot;:&quot;ok&quot;,
-                   &quot;status&quot;:web存什么我们返回什么
-                   }</code>  </p>
-<p>本地没有值返回：<code>{&quot;ret_status&quot;:&quot;error&quot;,
-                   &quot;status&quot;:&quot;no_set&quot;
-                   }</code>.</p>
-<hr>
-<hr>
-<hr>
-<p>##<a name="order" style="color:#e06064">新建订单</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">createOrderMes:callback:</a></li>
-</ul>
-<p>请求参数见邓大给的接口文档</p>
-<p>返回给web：<br>修改成功返回：（后台返给我们的数据).  </p>
-<p>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<p>##<a name="order1" style="color:#e06064">支付宝</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">aliPay:callback:</a></li>
-</ul>
-<p>请求参数见邓大给的接口文档</p>
-<p>返回给web：<br>修改成功返回：（后台返给我们的数据).   </p>
-<p>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<p>##<a name="order2" style="color:#e06064">微信支付</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">wxPay:callback:</a></li>
-</ul>
-<p>请求参数见邓大给的接口文档</p>
-<p>返回给web：<br>修改成功返回：（后台返给我们的数据).   </p>
-<p>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
-<p>##<a name="order3" style="color:#e06064">现金</a></p>
-<ul>
-<li>web请求参数 字典</li>
-<li>暴露给web方法名称 <a style="color:#e06064">cashPay:callback:</a></li>
-</ul>
-<p>请求参数见邓大给的接口文档</p>
-<p>返回给web：<br>修改成功返回：（后台返给我们的数据).  </p>
-<p>修改失败返回：<code>{&quot;ret_status&quot;:&quot;error&quot;}</code>. </p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello world!</span><br></pre></td></tr></table></figure>
 
       
 
@@ -708,7 +224,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">接口文档</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
         		</li>
       		
 		</ul>
@@ -764,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/11/xiaoxiao_cash/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/01/11/shooting-star/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -778,20 +294,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/25/weex_wyf/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/11/xxutilds/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          oc - weex 混编教程
+          关于敏感逻辑的保护方案扩写
         
       </div>
     </a>
   
-  
-    <a href="/2017/12/11/xxutilds/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于敏感逻辑的保护方案扩写</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
