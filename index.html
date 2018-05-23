@@ -165,17 +165,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 关于 com.apple.springboard.lockcomplete 解决方案</p>
-<p>1</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -r   com.apple.springboard.lockcomplete  .</span><br></pre></td></tr></table></figure>
-<p>​      命令用来查找 哪个文件调用了 苹果私有api</p>
-<p>2</p>
-<p> 一般情况是 环信3.0  — libHyphenateFullSDK.a 这个库</p>
-<p>3 到这个git链接下载： <a href="https://github.com/lizilong1989/HyphenateSDK" target="_blank" rel="noopener">链接</a></p>
-<p>4.合并需要的库 （注意名字）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lipo -create Hyphenate_armv7 Hyphenate_arm64 -output Hyphenate</span><br><span class="line">mv Hyphenate Hyphenate.framework</span><br></pre></td></tr></table></figure>
-<p>5.删除原有的，把生成的Hyphenate.framework 拖进去</p>
-
+        <hr>
+<p> title:  关于 com.apple.springboard.lockcomplete 解决方案<br> date: 2018-05-23 10:45:37</p>
+<h2 id="tags-OC"><a href="#tags-OC" class="headerlink" title=" tags: OC"></a> tags: OC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -r   com.apple.springboard.lockcomplete  .</span><br></pre></td></tr></table></figure>
+<hr>
+        
+          <a class="article-more-a" href="/2018/05/23/关于 com.apple.springboard.lockcomplete 解决方案/#more">more >></a>
+        
       
 
       
@@ -947,11 +943,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">swift</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">OC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -960,10 +960,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">接口文档</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OC</a>
               </li>
             
             <div class="clearfix"></div>
